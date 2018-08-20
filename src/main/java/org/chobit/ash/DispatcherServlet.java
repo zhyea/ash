@@ -1,11 +1,15 @@
 package org.chobit.ash;
 
 import org.chobit.ash.core.bean.Handler;
+import org.chobit.ash.core.bean.Param;
 import org.chobit.ash.helper.BeanHelper;
 import org.chobit.ash.helper.ClassHelper;
 import org.chobit.ash.helper.ControllerHelper;
 import org.chobit.ash.helper.IocHelper;
 import org.chobit.ash.tools.ClassUtils;
+import org.chobit.ash.tools.CodecUtils;
+import org.chobit.ash.tools.IOUtils;
+import org.chobit.ash.tools.UrlUtils;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -19,6 +23,8 @@ import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.chobit.ash.tools.StringUtils.isBlank;
 
 /**
  * @author robin
@@ -55,14 +61,21 @@ public class DispatcherServlet extends HttpServlet {
         Map<String, String> paramMap = new HashMap<>(2);
         Enumeration<String> paramNames = req.getParameterNames();
 
-        while (paramNames.hasMoreElements()){
+        while (paramNames.hasMoreElements()) {
             String paramName = paramNames.nextElement();
             String paramValue = req.getParameter(paramName);
 
             paramMap.put(paramName, paramValue);
         }
 
+        String url = CodecUtils.decodeURL(IOUtils.read(req.getInputStream()));
+        if (isBlank(url)) {
+            return;
+        }
 
+        paramMap.putAll(UrlUtils.parse(url));
+
+        Param param = new Param(paramMap);
 
 
     }
