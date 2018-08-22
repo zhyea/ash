@@ -1,15 +1,14 @@
 package org.chobit.ash;
 
+import org.chobit.ash.core.bean.Data;
 import org.chobit.ash.core.bean.Handler;
 import org.chobit.ash.core.bean.Param;
+import org.chobit.ash.core.bean.View;
 import org.chobit.ash.helper.BeanHelper;
 import org.chobit.ash.helper.ClassHelper;
 import org.chobit.ash.helper.ControllerHelper;
 import org.chobit.ash.helper.IocHelper;
-import org.chobit.ash.tools.ClassUtils;
-import org.chobit.ash.tools.CodecUtils;
-import org.chobit.ash.tools.IOUtils;
-import org.chobit.ash.tools.UrlUtils;
+import org.chobit.ash.tools.*;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -20,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -56,7 +56,7 @@ public class DispatcherServlet extends HttpServlet {
         }
 
         Class<?> controllerClass = handler.getControllerClass();
-        Object bean = BeanHelper.getBean(controllerClass);
+        Object controllerBean = BeanHelper.getBean(controllerClass);
 
         Map<String, String> paramMap = new HashMap<>(2);
         Enumeration<String> paramNames = req.getParameterNames();
@@ -76,8 +76,19 @@ public class DispatcherServlet extends HttpServlet {
         paramMap.putAll(UrlUtils.parse(url));
 
         Param param = new Param(paramMap);
+        Method requestMethod = handler.getRequestMethod();
 
+        Object result = ReflectionUtils.invokMethod(controllerBean, requestMethod, param);
 
+        if(result instanceof View){
+
+        }else if(result instanceof Data){
+            Data data = (Data)result;
+            Object model = data.getModel();
+            if(null!=model){
+                resp.setContentType();
+            }
+        }
     }
 
 
