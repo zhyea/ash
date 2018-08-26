@@ -24,6 +24,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.chobit.ash.core.enums.MediaType.APPLICATION_JSON;
 import static org.chobit.ash.tools.StringUtils.isBlank;
 
 /**
@@ -80,13 +81,16 @@ public class DispatcherServlet extends HttpServlet {
 
         Object result = ReflectionUtils.invokMethod(controllerBean, requestMethod, param);
 
-        if(result instanceof View){
-
-        }else if(result instanceof Data){
-            Data data = (Data)result;
+        if (result instanceof View) {
+            View view = (View) result;
+            System.out.println(view);
+        } else if (result instanceof Data) {
+            Data data = (Data) result;
             Object model = data.getModel();
-            if(null!=model){
-                resp.setContentType();
+            if (null != model) {
+                resp.setContentType(APPLICATION_JSON.value);
+                resp.setCharacterEncoding("UTF-8");
+                System.out.println(model);
             }
         }
     }
