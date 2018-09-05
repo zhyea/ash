@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.chobit.ash</groupId>
-    <artifactId>ash</artifactId>
+    <artifactId>ash-framework</artifactId>
     <version>0.1-SNAPSHOT</version>
 
     <dependencies>

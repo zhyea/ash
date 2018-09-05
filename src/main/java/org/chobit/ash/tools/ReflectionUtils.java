@@ -33,7 +33,7 @@ public class ReflectionUtils {
     /**
      * 调用方法
      */
-    public static Object invokMethod(Object obj, Method method, Object... args) {
+    public static Object invokeMethod(Object obj, Method method, Object... args) {
         Object result;
         try {
             method.setAccessible(true);
