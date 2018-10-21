@@ -19,10 +19,12 @@ import static org.chobit.ash.tools.StringUtils.isNotEmpty;
 /**
  * @author robin
  */
-public final class ClassUtils {
+public abstract class ClassUtils {
 
 
     private static Logger logger = LoggerFactory.getLogger(ClassUtils.class);
+
+
 
     public static ClassLoader getClassLoader() {
         return Thread.currentThread().getContextClassLoader();

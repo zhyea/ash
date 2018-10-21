@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
  *
  * @author robin
  */
-public class IOUtils {
+public abstract class IOUtils {
 
 
     private static Logger logger = LoggerFactory.getLogger(IOUtils.class);

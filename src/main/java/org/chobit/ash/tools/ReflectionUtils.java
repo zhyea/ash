@@ -9,10 +9,10 @@ import java.lang.reflect.Method;
 /**
  * @author robin
  */
-public class ReflectionUtils {
+public abstract class ReflectionUtils {
 
 
-    public static Logger logger = LoggerFactory.getLogger(ReflectionUtils.class);
+    private static Logger logger = LoggerFactory.getLogger(ReflectionUtils.class);
 
 
     /**

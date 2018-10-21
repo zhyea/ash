@@ -1,7 +1,6 @@
 package org.chobit.ash.helper;
 
 import org.chobit.ash.core.annotation.Component;
-import org.chobit.ash.core.annotation.Controller;
 import org.chobit.ash.core.annotation.Service;
 
 import java.lang.annotation.Annotation;
@@ -25,15 +24,6 @@ public class ClassHelper {
         CLASS_SET = getClassSet("");
     }
 
-
-    /**
-     * 获取所有添加Controller注解的类
-     *
-     * @return 添加Controller注解的类
-     */
-    public static Set<Class<?>> getControllerClassSet() {
-        return getClassSetByAnnotation(Controller.class);
-    }
 
 
     /**
@@ -63,7 +53,6 @@ public class ClassHelper {
      */
     public static Set<Class<?>> getBeanClassSet() {
         Set<Class<?>> beanClassSet = new HashSet<>();
-        beanClassSet.addAll(getControllerClassSet());
         beanClassSet.addAll(getServiceClassSet());
         beanClassSet.addAll(getComponentClassSet());
         return beanClassSet;

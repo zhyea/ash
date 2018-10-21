@@ -1,6 +1,9 @@
 package org.chobit.ash.tools;
 
-public final class StringUtils {
+/**
+ * @author robin
+ */
+public abstract class StringUtils {
 
 
     public static boolean isEmpty(String s) {
