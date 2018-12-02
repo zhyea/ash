@@ -1,25 +1,27 @@
 package org.chobit.ash.boot;
 
+import org.chobit.ash.helper.BeanHelper;
+import org.chobit.ash.helper.ClassHelper;
+import org.chobit.ash.helper.IocHelper;
+
 /**
  * @author robin
  */
-public class AshBootstrap {
+public final class AshBootstrap {
 
 
-    private AshConfig config;
+    private final AshConfig config;
 
 
-    public AshBootstrap() {
-        this.config = new AshConfig();
-    }
-
-    public AshBootstrap source(Class<?> source) {
-        this.config.setSource(source);
-        return this;
+    public AshBootstrap(Class<?> source) {
+        this.config = new AshConfig(source);
     }
 
 
     public void run() {
-        System.out.println(config.getSourcePackage());
+        ClassHelper.init(config.getSourcePackage());
+        BeanHelper.init();
+        IocHelper.init();
+
     }
 }

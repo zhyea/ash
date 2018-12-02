@@ -9,18 +9,13 @@ import java.util.Set;
 /**
  * @author robin
  */
-public class BeanHelper {
+public abstract class BeanHelper {
 
 
     private static final Map<Class<?>, Object> BEANS = new HashMap<>(64);
 
 
-    static {
-        init();
-    }
-
-
-    private static void init() {
+    public static void init() {
         Set<Class<?>> set = ClassHelper.getBeanClassSet();
         for (Class<?> cls : set) {
             BEANS.put(cls, ReflectionUtils.newInstance(cls));
@@ -34,7 +29,7 @@ public class BeanHelper {
 
 
     @SuppressWarnings("unchecked")
-    public static  <T> T getBean(Class<T> cls) {
+    public static <T> T getBean(Class<T> cls) {
         if (!BEANS.containsKey(cls)) {
             throw new RuntimeException("Cannot get object by class:" + cls);
         }

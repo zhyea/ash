@@ -1,7 +1,7 @@
 package org.chobit.ash.helper;
 
-import org.chobit.ash.core.annotation.Component;
-import org.chobit.ash.core.annotation.Service;
+import org.chobit.ash.annotation.Component;
+import org.chobit.ash.annotation.Service;
 
 import java.lang.annotation.Annotation;
 import java.util.HashSet;
@@ -15,15 +15,15 @@ import static org.chobit.ash.tools.ClassUtils.getClassSet;
  *
  * @author robin
  */
-public class ClassHelper {
+public abstract class ClassHelper {
 
 
     private static Set<Class<?>> CLASS_SET;
 
-    static {
-        CLASS_SET = getClassSet("");
-    }
 
+    public static void init(String basePackage) {
+        CLASS_SET = getClassSet(basePackage);
+    }
 
 
     /**

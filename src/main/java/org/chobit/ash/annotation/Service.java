@@ -1,4 +1,4 @@
-package org.chobit.ash.core.annotation;
+package org.chobit.ash.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -8,7 +8,8 @@ import java.lang.annotation.Target;
 /**
  * @author robin
  */
-@Target({ElementType.FIELD})
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Autowired {
+public @interface Service {
+
 }

@@ -1,6 +1,6 @@
 package org.chobit.ash.helper;
 
-import org.chobit.ash.core.annotation.Autowired;
+import org.chobit.ash.annotation.Autowired;
 import org.chobit.ash.tools.ReflectionUtils;
 
 import java.lang.reflect.Field;
@@ -9,13 +9,10 @@ import java.util.Map;
 /**
  * @author robin
  */
-public class IocHelper {
+public abstract class IocHelper {
 
-    static {
-        inject();
-    }
 
-    public static void inject() {
+    public static void init() {
         Map<Class<?>, Object> beanMap = BeanHelper.getBeanMap();
         if (null == beanMap || beanMap.isEmpty()) {
             return;
@@ -29,12 +26,12 @@ public class IocHelper {
                 continue;
             }
             for (Field field : fields) {
-                if (field.isAnnotationPresent(Autowired.class)) {
+                if (!field.isAnnotationPresent(Autowired.class)) {
                     continue;
                 }
 
                 Class<?> fieldClass = field.getDeclaringClass();
-                Object fieldInstance = beanMap.get(fieldClass);
+                Object fieldInstance = BeanHelper.getBean(fieldClass);
                 if (null != fieldInstance) {
                     ReflectionUtils.setField(instance, field, fieldInstance);
                 }
