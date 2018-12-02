@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 
 /**
  * @author robin
@@ -29,21 +28,6 @@ public abstract class ReflectionUtils {
         return instance;
     }
 
-
-    /**
-     * 调用方法
-     */
-    public static Object invokeMethod(Object obj, Method method, Object... args) {
-        Object result;
-        try {
-            method.setAccessible(true);
-            result = method.invoke(obj, args);
-        } catch (Exception e) {
-            logger.error("Invoke method failed.", e);
-            throw new RuntimeException(e);
-        }
-        return result;
-    }
 
 
     /**

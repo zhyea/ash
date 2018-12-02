@@ -12,10 +12,7 @@ public class AshConfig {
     public AshConfig(Class<?> source) {
         this.source = source;
     }
-
-    public Class<?> getSource() {
-        return source;
-    }
+    
 
     public String getSourcePackage() {
         return source.getPackage().getName();

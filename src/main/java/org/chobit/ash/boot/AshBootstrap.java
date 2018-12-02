@@ -22,6 +22,5 @@ public final class AshBootstrap {
         ClassHelper.init(config.getSourcePackage());
         BeanHelper.init();
         IocHelper.init();
-
     }
 }

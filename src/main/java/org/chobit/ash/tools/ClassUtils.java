@@ -25,7 +25,6 @@ public abstract class ClassUtils {
     private static Logger logger = LoggerFactory.getLogger(ClassUtils.class);
 
 
-
     public static ClassLoader getClassLoader() {
         return Thread.currentThread().getContextClassLoader();
     }
@@ -91,7 +90,7 @@ public abstract class ClassUtils {
                 if (isNotEmpty(packagePath)) {
                     packagePath0 = packagePath + File.separator + f.getName();
                 }
-                String packageName0 = fileName;
+                String packageName0 = packageName + "." + fileName;
                 addClassFromDirectory(set, packagePath0, packageName0);
             }
         }

@@ -30,7 +30,7 @@ public abstract class IocHelper {
                     continue;
                 }
 
-                Class<?> fieldClass = field.getDeclaringClass();
+                Class<?> fieldClass = field.getType();
                 Object fieldInstance = BeanHelper.getBean(fieldClass);
                 if (null != fieldInstance) {
                     ReflectionUtils.setField(instance, field, fieldInstance);
