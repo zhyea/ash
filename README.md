@@ -1,6 +1,8 @@
 # Ash Framework  
 
-一个极简的IOC框架。ash意为微尘，即微不足道。此项目仅为练手而用。
+一个极简的IOC框架。ash意为微尘，即微不足道。  
+
+此项目仅为练手而用。
 
 # 示例代码  
 
@@ -22,7 +24,7 @@ public class MyComponent {
 }
 ```
 
-创建一个Service类：
+创建一个Service类, 在Service类中引用并注入了Component类的实例。：
 
 ```java
 package org.chobit.ash.test.service;
@@ -44,8 +46,6 @@ public class MyService {
 }
 ```
 
-在Service类中引用并注入了Component类的实例。
-
 创建场景类，实现注入并调用：
 
 ```java
@@ -64,6 +64,12 @@ public class MyApp {
     }
 
 }
+```
+
+执行结果如下：
+```text
+This is a service!
+The component result
 ```
 
 能做的事情也就这样了。
